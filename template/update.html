@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}        <!-- ✅ was {% block body_block %} -->
+<h1>Update Employee Data</h1>
+<form method="post">
+    {% csrf_token %}       <!-- ✅ moved above form fields (best practice) -->
+    {{ form.as_p }}
+    <input type="submit" value="Update Employee" style="background:#1a73e8;color:white;border:none;padding:8px 20px;border-radius:5px;cursor:pointer;">
+</form>
+{% endblock %}             <!-- ✅ was {% endblock %} body_block -->

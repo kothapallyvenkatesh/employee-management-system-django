@@ -1,0 +1,28 @@
+<!-- template/signup.html -->
+{% extends 'base.html' %}
+{% block content %}
+<div style="max-width:400px; margin:60px auto; background:white; padding:30px; border-radius:8px; box-shadow:0 2px 10px rgba(0,0,0,0.1);">
+    <h2 style="text-align:center;">Create Account</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div style="margin-bottom:15px;">
+                <label><strong>{{ field.label }}</strong></label><br>
+                {{ field }}
+                {% if field.errors %}
+                    <span style="color:red;">{{ field.errors.as_text }}</span>
+                {% endif %}
+            </div>
+        {% endfor %}
+        {% if form.non_field_errors %}
+            <p style="color:red;">{{ form.non_field_errors }}</p>
+        {% endif %}
+        <button type="submit" style="width:100%;padding:10px;background:#1a73e8;color:white;border:none;border-radius:5px;font-size:16px;cursor:pointer;">
+            Sign Up
+        </button>
+    </form>
+    <p style="text-align:center;margin-top:15px;">
+        Already have an account? <a href="{% url 'login' %}">Login</a>
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 style="text-align:left;">Welcome To Employee List</h2>
+<table border="1" style="width:100%; border-collapse:collapse; background:white;">
+    <tr style="background:#1a73e8; color:white;">
+        <th>ENumber</th><th>EName</th><th>ESalary</th><th>EAddress</th><th>Action</th>
+    </tr>
+    {% for emp in emp_list %}
+    <tr>
+        <td>{{ emp.eno }}</td>      <!-- ✅ was emp.enumber -->
+        <td>{{ emp.ename }}</td>    <!-- ✅ correct -->
+        <td>{{ emp.esal }}</td>     <!-- ✅ was emp.esalary -->
+        <td>{{ emp.eaddr }}</td>    <!-- ✅ was emp.eaddress -->
+        <td>
+            <a href="{% url 'update_view' emp.id %}">
+                <button style="background:#1a73e8;color:white;border:none;padding:5px 12px;border-radius:4px;">Update</button>
+            </a>
+            <a href="{% url 'delete_view' emp.id %}">
+                <button style="background:#e53935;color:white;border:none;padding:5px 12px;border-radius:4px;">Delete</button>
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<br>
+<a href="{% url 'insert_view' %}">
+    <button style="background:#2e7d32;color:white;padding:10px 20px;border:none;border-radius:5px;font-size:15px;">Insert Record</button>
+</a>
+{% endblock %}
